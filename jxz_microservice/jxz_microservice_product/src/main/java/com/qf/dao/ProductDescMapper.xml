@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.ProductDescMapper">
+  <resultMap id="BaseResultMap" type="com.qf.entity.ProductDesc">
+    <!--@mbg.generated-->
+    <!--@Table t_product_desc-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+
+    <result column="productId" jdbcType="BIGINT" property="productid" />
+    <result column="productDesc" jdbcType="LONGVARCHAR" property="productdesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, productId, productDesc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_product_desc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_product_desc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qf.entity.ProductDesc" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_product_desc (productId, productDesc)
+    values (#{productId,jdbcType=BIGINT}, #{productDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qf.entity.ProductDesc" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_product_desc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        productId,
+      </if>
+      <if test="productDesc != null">
+        productDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productDesc != null">
+        #{productDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.entity.ProductDesc">
+    <!--@mbg.generated-->
+    update t_product_desc
+    <set>
+      <if test="productId != null">
+        productId = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productDesc != null">
+        productDesc = #{productDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.entity.ProductDesc">
+    <!--@mbg.generated-->
+    update t_product_desc
+    set productId = #{productId,jdbcType=BIGINT},
+      productDesc = #{productDesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

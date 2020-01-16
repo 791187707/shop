@@ -1,0 +1,34 @@
+server:
+  port: 1999
+  tomcat:
+    max-http-form-post-size: 20MB
+spring:
+  thymeleaf:
+    cache: false
+  servlet:
+    multipart:
+      max-file-size: 20MB
+dubbo:
+  application:
+    name: web-product
+    qos-enable: true
+    qos-port: 44440
+    qos-accept-foreign-ip: false
+  registry:
+    address: 154.8.211.233:2181
+    protocol: zookeeper
+  consumer:
+    timeout: 10000
+    retries: 6
+fdfs:
+  so-timeout: 1500  #读取时间
+  connect-timeout: 600  #连接超时时间
+  pool:
+    jmx-enabled: false
+  thumb-image:  #缩略图
+    width: 100
+    height: 100
+  tracker-list: 154.8.211.233:22122 #追踪者的socket  追踪者默认端口22122
+#图片地址前缀（自定义配置）
+imagePath:
+  server: http://154.8.211.233/

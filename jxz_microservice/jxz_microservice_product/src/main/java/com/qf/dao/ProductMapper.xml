@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.qf.entity.Product">
+    <!--@mbg.generated-->
+    <!--@Table t_product-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="salePrice" jdbcType="BIGINT" property="saleprice" />
+    <result column="salePoint" jdbcType="VARCHAR" property="salepoint" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="stock" jdbcType="BIGINT" property="stock" />
+    <result column="typeId" jdbcType="INTEGER" property="typeid" />
+    <result column="typeName" jdbcType="VARCHAR" property="typename" />
+    <result column="flag" jdbcType="BOOLEAN" property="flag" />
+    <result column="creatTime" jdbcType="TIMESTAMP" property="creattime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="creatUser" jdbcType="BIGINT" property="creatuser" />
+    <result column="updateUser" jdbcType="BIGINT" property="updateuser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, price, salePrice, salePoint, image, stock, typeId, typeName, flag, creatTime, 
+    updateTime, creatUser, updateUser
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_product
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.qf.entity.Product" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_product (`name`, price, salePrice, 
+      salePoint, image, stock, 
+      typeId, typeName, flag, 
+      creatTime, updateTime, creatUser, 
+      updateUser)
+    values (#{name,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, #{saleprice,jdbcType=BIGINT}, 
+      #{salepoint,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{stock,jdbcType=BIGINT}, 
+      #{typeid,jdbcType=INTEGER}, #{typename,jdbcType=VARCHAR}, #{flag,jdbcType=BOOLEAN}, 
+      #{creattime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{creatuser,jdbcType=BIGINT}, 
+      #{updateuser,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.qf.entity.Product" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="saleprice != null">
+        salePrice,
+      </if>
+      <if test="salepoint != null">
+        salePoint,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="typeid != null">
+        typeId,
+      </if>
+      <if test="typename != null">
+        typeName,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="creattime != null">
+        creatTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="creatuser != null">
+        creatUser,
+      </if>
+      <if test="updateuser != null">
+        updateUser,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="saleprice != null">
+        #{saleprice,jdbcType=BIGINT},
+      </if>
+      <if test="salepoint != null">
+        #{salepoint,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=BIGINT},
+      </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="typename != null">
+        #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=BOOLEAN},
+      </if>
+      <if test="creattime != null">
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatuser != null">
+        #{creatuser,jdbcType=BIGINT},
+      </if>
+      <if test="updateuser != null">
+        #{updateuser,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.entity.Product">
+    <!--@mbg.generated-->
+    update t_product
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="saleprice != null">
+        salePrice = #{saleprice,jdbcType=BIGINT},
+      </if>
+      <if test="salepoint != null">
+        salePoint = #{salepoint,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=BIGINT},
+      </if>
+      <if test="typeid != null">
+        typeId = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="typename != null">
+        typeName = #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=BOOLEAN},
+      </if>
+      <if test="creattime != null">
+        creatTime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatuser != null">
+        creatUser = #{creatuser,jdbcType=BIGINT},
+      </if>
+      <if test="updateuser != null">
+        updateUser = #{updateuser,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.entity.Product">
+    <!--@mbg.generated-->
+    update t_product
+    set `name` = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      salePrice = #{saleprice,jdbcType=BIGINT},
+      salePoint = #{salepoint,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      stock = #{stock,jdbcType=BIGINT},
+      typeId = #{typeid,jdbcType=INTEGER},
+      typeName = #{typename,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=BOOLEAN},
+      creatTime = #{creattime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      creatUser = #{creatuser,jdbcType=BIGINT},
+      updateUser = #{updateuser,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <!--查询商品-->
+  <select id="listProduct" resultMap="BaseResultMap">
+    select * from t_product where flag = 1
+  </select>
+
+  <!--假删除单个商品-->
+  <update id="pretendDeleteByPrimaryKey" parameterType="long" >
+    update t_product set flag = 0 where id = #{checkedOneID}
+  </update>
+</mapper>

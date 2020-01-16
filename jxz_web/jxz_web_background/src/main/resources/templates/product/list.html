@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base href="/"/>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <!--uploadify的CSS文件-->
+    <link rel="stylesheet" type="text/css" href="css/uploadifive.css">
+
+</head>
+<body>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" ></script>
+<!-- layui的JavaScript 文件-->
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript" src="layui/layui.all.js"></script>
+<!--uploadify的JavaScript文件-->
+<script src="js/jquery.uploadifive.min.js" type="text/javascript"></script>
+
+<div class="container-fluid">
+    <!--头部-->
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+            <button type="button" class="btn btn-success"  id="addProduct">添加</button>
+            <button type="button" class="btn btn-danger">删除</button>
+        </div>
+    </div>
+    <!--内容-->
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <tr>
+                    <td>编号</td>
+                    <td>商品类别</td>
+                    <td>商品名称</td>
+                    <td>商品价格</td>
+                    <td>商品图片</td>
+                    <td>商品卖点</td>
+                    <td>操作</td>
+                </tr>
+                <tr th:each="product:${productPageInfo.list}">
+                    <td th:text="${product.id}">1001</td>
+                    <td th:text="${product.typename}">手机</td>
+                    <td th:text="${product.name}">华为</td>
+                    <td th:text="${product.price}">7777</td>
+                    <td>
+                        <img src="#" th:src="${product.image}">
+                    </td>
+                    <td th:text="${product.salepoint}">国产</td>
+                    <td >
+                        <button type="button" class="btn btn-info updateProduct" th:id="${product.id}">修改</button>
+                        <button type="button" class="btn btn-danger deleteOneProduct" th:id="${product.id}">删除</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!--尾部-->
+    <div class="row">
+        <div class="col-md-6">
+            当前第<span th:text="${productPageInfo.pageNum}"></span>页，
+            共<span th:text="${productPageInfo.total}"></span>条，
+            共<span th:text="${productPageInfo.pages}"></span>页
+        </div>
+        <!--分页导航条-->
+        <div class="col-md-6">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <!--遍历 pageinfo中的所有导航页码号-->                          <!--所有样式都是bootstrap自带的     active是被选中页码的样式-->
+                    <li th:each="num:${productPageInfo.getNavigatepageNums()}" th:class="${num == productPageInfo.pageNum ? 'active':''}">
+                        <!--遍历取出所有导航页码号-->
+                        <a href="#" th:href="|product/pagelist/${num}/${productPageInfo.pageSize}|" th:text="${num}">1</a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!--商品的添加页面弹出的模态框-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="addmodal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">添加商品信息</h4>
+                </div>
+                <div class="modal-body">
+                    <!--表单  bootstrap都有-->
+                    <form class="form-horizontal" action="/product/addProduct" method="post" id="addProductForm">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">商品名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="product.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="typeID" class="col-sm-2 control-label">类别ID</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="typeID" name="product.typeid">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="typeName" class="col-sm-2 control-label">类别名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="typeName" name="product.typename">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="price" class="col-sm-2 control-label">商品价格</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="price" name="product.price">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="salePrice" class="col-sm-2 control-label">商品售价</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="salePrice" name="product.saleprice">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="stock" class="col-sm-2 control-label">商品库存</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="stock" name="product.stock">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="salePoint" class="col-sm-2 control-label">商品卖点</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="salePoint" name="product.salepoint">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="image" class="col-sm-2 control-label">商品图片</label>
+                            <div class="col-sm-10">
+                                <!--uploadify 下面有方法-->
+                                <input id="file_upload" name="file_upload" type="file">
+                                <!--图片回显-->
+                                <img src="#" id="showImage" style="width:100px;height: 100px;display:none">
+                                <!--提交图片路径-->
+                                <input type="hidden" class="form-control" id="image" name="product.image">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="desc" class="col-sm-2 control-label">商品描述</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="productDesc" rows="3" id="desc" placeholder=""></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="addSubmitForm">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        /*添加按钮点击触发模态框*/
+        $("#addProduct").click(function () {
+            $('#addmodal').modal({
+                "backdrop":"static",
+                "keyboard":false
+            })
+        })
+
+        /*提交添加商品表单按钮的点击事件*/
+        $("#addSubmitForm").click(function () {
+            $("#addProductForm").submit();
+        })
+
+        /*商品修改*/
+        $(".updateProduct").click(function () {
+            alert("新添商品ID:"+$(this).attr("id"));
+
+        })
+        /*单个商品删除*/
+        $(".deleteOneProduct").click(function () {
+            alert("确认永久删除商品ID为<"+$(this).attr("id")+">的商品吗？");
+            var checkedOneID = $(this).attr("id");
+            $.ajax({
+                type:"post",
+                url:"/product/deleteOneProduct",
+                data:"checkedOneID="+checkedOneID,
+                success:function (result) {
+                    if (result>0){
+                        console.log("删除成功！！！")
+                        layui.use('layer', function(){
+                                var layer = layui.layer;
+                                layer.msg('刪除成功！！', {
+                                    icon: 6,       //6笑臉 5哭臉
+                                    time: 3000 //2秒关闭（如果不配置，默认是3秒）
+                                });
+                        });
+                     setTimeout(function () {
+                        location.reload();
+                     },3000)
+
+                    } else{
+                        alert("系統錯誤——删除失败！！");
+                    }
+                }
+
+            })
+        })
+
+        /*uploadify 拿到图片上传在FastDFS中的storage地址*/
+        $('#file_upload').uploadifive({
+            /*此处value与FileController中方法的参数名保持一致  皆为file*/
+            'fileObjName':'file',
+            /*此处value为FileController中上传图片的方法路径*/
+            'uploadScript':'fileUpload/upload',
+            /*拿到从FileController中得到的图片地址*/
+            'onUploadComplete':function (file,data) {
+                /*文件名*/
+                alert(file);
+                /*路径*/
+                alert(data);
+                /*添加到图片回显的src中*/
+                $("#showImage").attr("src",data).show();
+                /*隐藏域提交图片src至数据库*/
+                $("#image").val(data);
+            }
+        })
+
+    })
+
+
+
+    
+</script>
+</body>
+</html>

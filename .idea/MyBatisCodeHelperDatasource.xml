@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="addSerializeUid" value="true" />
+        <option name="javaMapperPackage" value="com.qf.dao" />
+        <option name="javaMapperPath" value="D:\JiangXueZhi\JavaWorkSpace\jxz_1910\jxz_microservice\jxz_microservice_product\src\main\java" />
+        <option name="javaModelPackage" value="com.qf.entity" />
+        <option name="javaModelPath" value="D:\JiangXueZhi\JavaWorkSpace\jxz_1910\jxz_basic\jxz_entity\src\main\java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="jxz_api_product" />
+        <option name="lombokAllArgConstructor" value="true" />
+        <option name="lombokDataAnnotation" value="true" />
+        <option name="lombokNoArgsConstructor" value="true" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="jxz_api_product">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.qf.dao" />
+                  <option name="javaMapperPath" value="D:\JiangXueZhi\JavaWorkSpace\jxz_1910\jxz_microservice\jxz_microservice_product\src\main\java" />
+                  <option name="javaModelPacakge" value="com.qf.entity" />
+                  <option name="javaModelPath" value="D:\JiangXueZhi\JavaWorkSpace\jxz_1910\jxz_basic\jxz_entity\src\main\java" />
+                  <option name="xmlPackage" value="com.qf.dao" />
+                  <option name="xmlPath" value="D:\JiangXueZhi\JavaWorkSpace\jxz_1910\jxz_microservice\jxz_microservice_product\src\main\java" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="jxzshop:t_product">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Product" />
+                  <option name="moduleName" value="jxz_api_product" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jxzshop:t_product_desc">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="ProductDesc" />
+                  <option name="moduleName" value="jxz_api_product" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="jxzshop:t_product_type">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="ProductType" />
+                  <option name="moduleName" value="jxz_api_product" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="xmlMapperPackage" value="com.qf.dao" />
+        <option name="xmlMapperPath" value="D:\JiangXueZhi\JavaWorkSpace\jxz_1910\jxz_microservice\jxz_microservice_product\src\main\java" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>
